@@ -1,0 +1,42 @@
+.sort {
+	margin: 0 20px;
+  padding: 15px 34px;
+	overflow: hidden;
+	font-family: 'Montserrat Alternates', sans-serif;
+  color: white;
+	letter-spacing: 1px;
+  text-transform: uppercase;
+	font-weight: 600;
+  border-width: 0;
+  border-radius: 0px;
+	transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  outline: none;
+    cursor: pointer;
+}
+.price {
+	background: linear-gradient(90deg, #c600b2, #7619fd);
+}
+.alphabet {
+	background: linear-gradient(90deg, #a3ffb0, #2bd9e8);
+}
+.sort:before,
+.sort:after {
+    content: "";
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+  height: 100%;
+  left: -110%;
+  top: 0;
+	opacity: 0.1;
+	background: black;
+  transform: skewX(25deg);
+	transition: .5s ease;
+}
+.sort:hover:before {
+    left: -10%;
+    transition: .3s ease;
+}
+.sort:hover:after {
+    left: -20%;
+}
