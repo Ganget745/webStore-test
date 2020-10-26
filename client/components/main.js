@@ -24,13 +24,15 @@ const Main = () => {
       <Currency />
       <Sort />
       <OrderCount />
-      {listOfGoods.map((item) => {
-        return (
-          <div key={item.id}>
-            <Card data={item} />
-          </div>
-        )
-      })}
+      <div className="flex flex-wrap">
+        {listOfGoods.map((item) => {
+          return (
+            <div key={item.id} className="m-2">
+              <Card data={item} />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

@@ -10,8 +10,8 @@ const Card = (props) => {
       <div className="px-6 py-4">
         <div className="card__title font-bold text-xl mb-2">{data.title}</div>
         <div className="flex justify-evenly">
-  <div className="card__price text-gray-700 text-base">{data.price}</div>
-  <div className="currency text-gray-700 text-base">currency</div>
+          <div className="card__price text-gray-700 text-base">{data.price}</div>
+          <div className="currency text-gray-700 text-base">currency</div>
         </div>
         <div className="card__product-amount text-gray-700 text-base">in cart:</div>
       </div>
