@@ -38,9 +38,7 @@ export function getGoods() {
 }
 
 export function setCurrency(currency) {
-  return (dispatch, getState) => {
-    const state = getState()
-    console.log(state)
+  return (dispatch) => {
     axios('https://api.exchangeratesapi.io/latest?base=USD').then(({ data }) => {
       dispatch({
         type: SET_CURRENCY,

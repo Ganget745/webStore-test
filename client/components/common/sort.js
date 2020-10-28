@@ -7,7 +7,7 @@ const Sort = (props) => {
     props.card.sort()
   }
   return (
-    <div>
+    <div className="sorting">
       <button id="sort-price" type="button" className="sort price" onClick={clickAction}>
         price
       </button>

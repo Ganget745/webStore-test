@@ -1,16 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const OrderCount = () => {
+  const { count, totalPrice } = useSelector((store) => store.basket)
+  const currency = useSelector((store) => store.goods.currency)
+  const rate = useSelector((store) => store.goods.rates[store.goods.currency])
+  const finalPrice = totalPrice * rate
   return (
     <div className="flex items-center">
       <div className="flex flex-col pr-8">
-        <div className="my-1 text-m text-gray-700 font-medium" href="#">
-          Total items in cart: XXX
+        <div className="my-1 text-m text-white font-medium" href="#">
+          Total price in basket: {finalPrice.toFixed(2)} {currency}
         </div>
       </div>
       <div className="flex justify-center">
-        <Link id="order-count" className="relative text-gray-700 hover:text-gray-600" to="/basket">
+        <Link id="order-count" className="relative text-white hover:text-gray-600" to="/basket">
           <svg
             className="h-5 w-12"
             viewBox="0 0 24 24"
@@ -25,7 +30,9 @@ const OrderCount = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="absolute top-0 left-0 rounded-full bg-indigo-500 text-white p-1 text-xs" />
+          <span className="absolute top-0 left-0 rounded-full bg-indigo-500 text-white p-1 text-xs">
+            {count}
+          </span>
         </Link>
       </div>
     </div>

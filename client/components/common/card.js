@@ -1,5 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToBasket } from '../../redux/reducers/basket'
+
 import '../styles/card.scss'
 
 const Card = (props) => {
@@ -7,6 +9,8 @@ const Card = (props) => {
   const currency = useSelector((store) => store.goods.currency)
   const rate = useSelector((store) => store.goods.rates[store.goods.currency])
   const actualPrice = data.price * rate
+  const dispatch = useDispatch()
+  const amount = useSelector((store) => store.basket.cart[data.id])
   return (
     <div className="flex flex-col card max-w-xs rounded overflow-hidden shadow-lg">
       <img className="card__image w-full object-cover h-40" src={data.image} alt={data.title} />
@@ -16,10 +20,12 @@ const Card = (props) => {
           <div className="card__price text-gray-700 text-base">{actualPrice.toFixed(2)}</div>
           <div className="currency text-gray-700 text-base">{currency}</div>
         </div>
-        <div className="card__product-amount text-gray-700 text-base">in cart:</div>
+        <div className="card__product-amount text-gray-700 text-base">
+          in cart: {typeof amount === 'undefined' ? 0 : amount.count}
+        </div>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <button type="button" className="add-button">
+        <button type="button" className="add-button" onClick={() => dispatch(addToBasket(data))}>
           Add
         </button>
       </div>
@@ -28,12 +34,3 @@ const Card = (props) => {
 }
 
 export default Card
-
-/* <div className="card">
-      <div className="card_image">card_image</div>
-      <div className="card_price">card_price</div>
-      <div className="currency">currency</div>
-      <div className="card_product-amount">card_product-amount</div>
-      <div className="card_title">card_title</div>
-      <button type="button">Add</button>
-    </div> */
