@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import Head from './head'
 import Header from './header'
 import Card from './common/card'
-import Currency from './common/currency'
 import Sort from './common/sort'
 import OrderCount from './common/order-count'
 import { getGoods } from '../redux/reducers/goods'
@@ -21,7 +20,6 @@ const Main = () => {
     <div>
       <Head title="Hello" />
       <Header />
-      <Currency />
       <Sort />
       <OrderCount />
       <div className="flex flex-wrap">

@@ -5,6 +5,7 @@ const SET_CURRENCY = 'SET_CURRENCY'
 
 const initialState = {
   listOfGoods: [],
+  rates: { USD: 1 },
   currency: 'USD'
 }
 
@@ -19,7 +20,8 @@ export default (state = initialState, action) => {
     case SET_CURRENCY: {
       return {
         ...state,
-        currency: action.data
+        currency: action.data,
+        rates: action.rates
       }
     }
     default:
@@ -39,9 +41,12 @@ export function setCurrency(currency) {
   return (dispatch, getState) => {
     const state = getState()
     console.log(state)
-    dispatch({
-      type: SET_CURRENCY,
-      data: currency.toUpperCase()
+    axios('https://api.exchangeratesapi.io/latest?base=USD').then(({ data }) => {
+      dispatch({
+        type: SET_CURRENCY,
+        data: currency.toUpperCase(),
+        rates: data.rates
+      })
     })
   }
 }
