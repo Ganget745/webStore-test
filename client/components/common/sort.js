@@ -1,17 +1,30 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
+import { setSort } from '../../redux/reducers/goods'
 import '../styles/sort.scss'
 
-const Sort = (props) => {
-  const clickAction = () => {
-    props.card.sort()
-  }
+const Sort = () => {
+  const dispatch = useDispatch()
+  // const positive = '▲'
+  // const negative = '▼'
   return (
     <div className="sorting">
-      <button id="sort-price" type="button" className="sort price" onClick={clickAction}>
+      <div className="choose-sort"> sort by:</div>
+      <button
+        id="sort-price"
+        type="button"
+        className="sort price"
+        onClick={() => dispatch(setSort('positive'))}
+      >
         price
       </button>
-      <button id="sort-name" type="button" className="sort alphabet" onClick={clickAction}>
+      <button
+        id="sort-name"
+        type="button"
+        className="sort alphabet"
+        onClick={() => dispatch(setSort('positive'))}
+      >
         alphabet
       </button>
     </div>

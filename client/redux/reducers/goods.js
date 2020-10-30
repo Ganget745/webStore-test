@@ -2,11 +2,13 @@ import axios from 'axios'
 
 const GET_GOODS = 'GET_GOODS'
 const SET_CURRENCY = 'SET_CURRENCY'
+const SET_SORT = 'SET_SORT'
 
 const initialState = {
   listOfGoods: [],
   rates: { USD: 1 },
-  currency: 'USD'
+  currency: 'USD',
+  sortType: ''
 }
 
 export default (state = initialState, action) => {
@@ -22,6 +24,27 @@ export default (state = initialState, action) => {
         ...state,
         currency: action.data,
         rates: action.rates
+      }
+    }
+    case SET_SORT: {
+      const sortedList = [...state.listOfGoods].sort((a, b) => {
+        if (a.title < b.title) {
+          return -1
+        }
+        if (a.title > b.title) {
+          return 1
+        }
+        return 0
+      })
+      if (action.sortType === 'negative') {
+        return {
+          ...state,
+          listOfGoods: sortedList.reverse()
+        }
+      }
+      return {
+        ...state,
+        listOfGoods: sortedList
       }
     }
     default:
@@ -46,5 +69,12 @@ export function setCurrency(currency) {
         rates: data.rates
       })
     })
+  }
+}
+
+export function setSort(sortType) {
+  return {
+    type: SET_SORT,
+    sortType
   }
 }
