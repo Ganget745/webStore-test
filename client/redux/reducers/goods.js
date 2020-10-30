@@ -28,6 +28,14 @@ export default (state = initialState, action) => {
     }
     case SET_SORT: {
       const sortedList = [...state.listOfGoods].sort((a, b) => {
+        if (action.name !== 'abc') {
+          if (a.price < b.price) {
+            return -1
+          }
+          if (a.price > b.price) {
+            return 1
+          }
+        }
         if (a.title < b.title) {
           return -1
         }
@@ -36,7 +44,7 @@ export default (state = initialState, action) => {
         }
         return 0
       })
-      if (action.sortType === 'negative') {
+      if (action.sortType === false) {
         return {
           ...state,
           listOfGoods: sortedList.reverse()
@@ -72,9 +80,10 @@ export function setCurrency(currency) {
   }
 }
 
-export function setSort(sortType) {
+export function setSort(name, sortType) {
   return {
     type: SET_SORT,
-    sortType
+    sortType,
+    name
   }
 }
