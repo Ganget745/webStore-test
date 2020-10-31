@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const OrderCount = () => {
-  const { count, totalPrice } = useSelector((store) => store.basket)
-  const currency = useSelector((store) => store.goods.currency)
-  const rate = useSelector((store) => store.goods.rates[store.goods.currency])
-  const finalPrice = totalPrice * rate
+  const { totalAmount, totalPrice } = useSelector((store) => store.basket)
+  const currency = useSelector((s) => s.goods.currency)
+  const rate = useSelector((s) => s.goods.rates[s.goods.currency])
+  const actualPrice = totalPrice * rate
   return (
     <div className="flex items-center">
       <div className="flex flex-col pr-8">
         <div className="my-1 text-m text-white font-medium" href="#">
-          Total price in basket: {finalPrice.toFixed(2)} {currency}
+          Total price in basket: {actualPrice.toFixed(2)} {currency}
         </div>
       </div>
       <div className="flex justify-center">
@@ -31,7 +31,7 @@ const OrderCount = () => {
             />
           </svg>
           <span className="absolute top-0 left-0 rounded-full bg-indigo-500 text-white p-1 text-xs">
-            {count}
+            {totalAmount}
           </span>
         </Link>
       </div>

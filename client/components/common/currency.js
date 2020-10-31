@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-
 import { setCurrency } from '../../redux/reducers/goods'
+
 import '../styles/currency.scss'
 
 const Currency = () => {

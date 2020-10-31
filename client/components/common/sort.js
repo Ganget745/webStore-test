@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setSort } from '../../redux/reducers/goods'
+import { setSortCart } from '../../redux/reducers/basket'
 import '../styles/sort.scss'
 
 const Sort = () => {
@@ -15,6 +16,7 @@ const Sort = () => {
       setSortMethod(toggled ? '▲' : '▼')
       setActiveSort(sortType)
       dispatch(setSort(sortType, toggled))
+      dispatch(setSortCart(sortType, toggled))
     }
   }
   return (
